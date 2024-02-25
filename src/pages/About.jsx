@@ -1,4 +1,5 @@
 import React from "react";
+import Slider from "../components/Slider";
 
 function About() {
   return (
@@ -38,6 +39,7 @@ function About() {
             The ThriftyStore Team
           </p>
         </div>
+        <Slider/>
       </div>
     </div>
   );
