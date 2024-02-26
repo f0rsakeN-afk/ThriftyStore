@@ -10,6 +10,7 @@ import Products from "./pages/Products";
 import WIshlist from "./pages/WIshlist";
 import Profile from "./pages/Profile";
 import About from "./pages/About";
+import SingleProduct from "./features/products/SingleProduct";
 
 const App = () => {
   const queryClient = new QueryClient({
@@ -33,6 +34,7 @@ const App = () => {
               <Route path="wishlist" element={<WIshlist />} />
               <Route path="about" element={<About />} />
               <Route path="profile" element={<Profile />} />
+              <Route path="singleProduct/:id" element={<SingleProduct/>} />
             </Route>
             <Route path="*" element={<PageNotFound />} />
           </Routes>

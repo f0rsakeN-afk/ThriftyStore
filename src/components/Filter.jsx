@@ -14,6 +14,7 @@ function Filter({ filterField, options }) {
         <button
           className={`capitalize text-gray-700 dark:text-gray-200 hover:bg-red-600 p-2 hover:text-gray-200  ${option.value === currentFilter ? "bg-red-600 text-gray-200" : ""}`}
           onClick={() => handleClick(option.value)}
+          key={option.value}
         >
           {option.label}
         </button>

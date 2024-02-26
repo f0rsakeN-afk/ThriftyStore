@@ -14,13 +14,13 @@ function HomeproductSample() {
       <div className="flex justify-between items-center pb-2">
         <h1 className=" text-xl text-gray-700">Featured products</h1>
         <Link
-          to="products"
+          to="/products"
           className="px-2 py-2 text-orange-600 border  border-orange-600"
         >
           Shop more
         </Link>
       </div>
-      <div className="grid grid-cols-6 gap-2 overflow-x-auto">
+      <div className="grid grid-cols-3 lg:grid-cols-6 gap-2 overflow-x-auto">
         {someProducts.map((product) => (
           <ProductsList product={product} key={product.id} />
         ))}
