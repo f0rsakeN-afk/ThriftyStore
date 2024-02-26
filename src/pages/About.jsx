@@ -1,10 +1,9 @@
 import React from "react";
-import Slider from "../components/Slider";
 
 function About() {
   return (
     <div>
-      <div className="grid grid-cols-2 gap-12 py-8 ">
+      <div className="grid lg:grid-cols-2 gap-12 py-8 ">
         <div className="">
           <Title
             text1={`At ThriftyStore, we believe in more than just providing quality
@@ -34,12 +33,16 @@ function About() {
             text1={`Thank you for being a part of the ThriftyStore family. We look forward to helping you make a statement with your style.`}
           />
           <p className="text-gray-600 dark:text-gray-200">Happy Shopping</p>
-          
+
           <p className="text-gray-600 dark:text-gray-200 ">
             The ThriftyStore Team
           </p>
         </div>
-        <Slider/>
+        <img
+          src="https://phrcgxahoyzoocbzanju.supabase.co/storage/v1/object/public/sliderImages/natasa-grabovac-65GdmvSnvr4-unsplash.jpg"
+          alt="about-image"
+          className="h-[32rem] lg:h-[39rem]  w-full lg:w-5/6 rounded-sm drop-shadow-2xl order-first lg:order-last"
+        />
       </div>
     </div>
   );
