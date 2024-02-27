@@ -1,16 +1,25 @@
 import React from "react";
-import { TbTruckDelivery } from "react-icons/tb";
-function Delivery() {
+
+function Delivery({ company, days, text, icon, text2 }) {
   return (
-    <div>
-          <div className="flex justify-between">
-          <p className="flex gap-2 items-center">
-        <TbTruckDelivery />
-        Free Delivery
-              </p>
-              <span className="">Free</span>
+    <div className="py-2">
+      <div className="flex justify-between">
+        <p className="flex gap-2 items-center font-semibold text-gray-700 dark:text-gray-200">
+          <span className={`text-[#1fafa4] text-xl`}>{icon}</span>
+          {text}
+        </p>
+        <span className="text-gray-700 dark:text-gray-200 font-semibold">
+          {text2}
+        </span>
       </div>
-      <span className="pl-6">1-2day(s)</span>
+      <span className=" tracking-wide text-sm text-gray-500 pl-6 dark:text-gray-300">
+        {days}
+      </span>
+
+      <p className="ml-6 p-2 bg-gray-100 dark:bg-gray-700 dark:text-gray-200 text-sm text-gray-600 rounded-md">
+        Enjoy free shipping promotion with minimum spend of Rs. 699 from
+        <span className="text-blue-600"> {company}</span>
+      </p>
     </div>
   );
 }
