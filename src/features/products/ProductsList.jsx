@@ -16,7 +16,7 @@ function ProductsList({ product }) {
     category,
   } = product;
 
-  const discountPercentage = ((discount / price) * 100).toFixed(2);
+const discountPercentage = ((discount / price) * 100).toFixed(2);
   const priceAfterDiscount = price - discount;
 
   return (
