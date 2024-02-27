@@ -1,8 +1,18 @@
-import React, { useState } from "react";
-import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
-
-function Slider() {
-  const [currentSlide, setCurrentSlide] = useState(0);
+import React from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+function SliderHome() {
+  const settings = {
+    dots: false,
+    infinite: true,
+    slidesToShow: 2,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 3000,
+    autoplaySpeed: 2000,
+    cssEase: "linear",
+  };
   const data = [
     "https://phrcgxahoyzoocbzanju.supabase.co/storage/v1/object/public/sliderImages/5.jpg",
     "https://phrcgxahoyzoocbzanju.supabase.co/storage/v1/object/public/sliderImages/4.jpg",
@@ -11,19 +21,15 @@ function Slider() {
     "https://phrcgxahoyzoocbzanju.supabase.co/storage/v1/object/public/sliderImages/1.jpg",
   ];
 
-  const prevSlide = () => {
-    setCurrentSlide(currentSlide === 0 ? data.length - 1 : currentSlide - 1);
-  };
-
-  const nextSlide = () => {
-    setCurrentSlide(currentSlide === data.length - 1 ? 0 : currentSlide + 1);
-  };
-
   return (
-    <div className="">
-      cbhds
+    <div className="slider-container mb-8 px-8 ">
+      <Slider {...settings}>
+        {data.map((image, index) => {
+          return <img src={image} alt="banner" className="h-60" key={index} />;
+        })}
+      </Slider>
     </div>
   );
 }
 
-export default Slider;
+export default SliderHome;

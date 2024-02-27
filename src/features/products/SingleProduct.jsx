@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { getProducts } from "./Products";
 import Spinner from "../../components/Spinner";
 import ShareAndWishlist from "../../components/ShareAndWishlist";
+import HomeProductSample from "../../components/HomeproductSample";
 import SIngleProductRightSidebar from "../../components/SIngleProductRightSidebar";
 
 function SingleProduct() {
@@ -23,14 +24,19 @@ function SingleProduct() {
     inStock,
     deliveryFree,
     created_at,
+    soldBy,
   } = singleProduct;
 
   const discountPercentage = ((discount / price) * 100).toFixed(2);
   const priceAfterDiscount = price - discount;
   return (
     <div className="">
-      <div className="grid grid-cols-4 gap-4 py-8">
-        <img src={image} alt="product-image" className="w-full h-92 rounded-md" />
+      <div className="grid grid-cols-4  gap-4 py-8">
+        <img
+          src={image}
+          alt="product-image"
+          className="w-full h-92 rounded-md"
+        />
         <div className="col-span-2">
           <div className="">
             <h1 className="text-3xl font-semibold text-gray-700 dark:text-gray-200 pb-2 tracking-wide">
@@ -73,14 +79,27 @@ function SingleProduct() {
                   </button>
                 </div>
               </section>
-              <button className="px-4 py-2 bg-orange-400 hover:bg-orange-500 transition-colors duration-200 ease-linear text-gray-50 font-semibold rounded-sm shadow-md">
-                Add to Cart
-              </button>
+              {inStock ? (
+                <button className="px-4 py-2 bg-orange-400 hover:bg-orange-500 transition-colors duration-200 ease-linear text-gray-50 font-semibold rounded-sm shadow-md">
+                  Add to Cart
+                </button>
+              ) : (
+                <div className="">
+                  <h2 className="text-xl font-semibold text-red-600 italic">
+                    Out of Stock
+                  </h2>
+                  <span className="text-green-600  text-xs">Will be available soon</span>
+                </div>
+              )}
             </div>
+            <p className="text-gray-800 dark:text-gray-300 pt-4">
+              {description}
+            </p>
           </div>
         </div>
-       <SIngleProductRightSidebar/>
+        <SIngleProductRightSidebar soldBy={soldBy} />
       </div>
+      <HomeProductSample />
     </div>
   );
 }
