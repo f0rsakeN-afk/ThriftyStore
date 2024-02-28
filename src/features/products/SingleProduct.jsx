@@ -5,6 +5,7 @@ import Spinner from "../../components/Spinner";
 import ShareAndWishlist from "../../components/ShareAndWishlist";
 import HomeProductSample from "../../components/HomeproductSample";
 import SIngleProductRightSidebar from "../../components/SIngleProductRightSidebar";
+import StarRating from "../../components/StarRating";
 
 function SingleProduct() {
   const { id } = useParams();
@@ -44,6 +45,7 @@ function SingleProduct() {
             </h1>
 
             <section className="">
+              <StarRating rating={rating}/>
               <ShareAndWishlist />
             </section>
             <hr className="py-1" />
