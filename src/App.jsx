@@ -20,7 +20,8 @@ const App = () => {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
-        staleTime: 60 * 1000,
+        staleTime: 3600 * 1000,
+        cacheTime: 600 * 1000,
       },
     },
   });
@@ -43,10 +44,7 @@ const App = () => {
                 <Route path="wishlist" element={<WIshlist />} />
                 <Route path="about" element={<About />} />
                 <Route path="profile" element={<Profile />} />
-                <Route
-                  path="singleProduct/:id"
-                  element={<SingleProduct />}
-                />
+                <Route path="singleProduct/:id" element={<SingleProduct />} />
               </Route>
             </Route>
             <Route path="*" element={<PageNotFound />} />
