@@ -4,7 +4,7 @@ import { IoEyeSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { useSignup } from "./Signup";
 
-const Signup = () => {
+const SignUp = () => {
   const [show, setShow] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -72,4 +72,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default SignUp;

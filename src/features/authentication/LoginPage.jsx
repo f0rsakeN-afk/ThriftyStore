@@ -73,7 +73,8 @@ const LoginPage = () => {
         </div>
         <button
           type="submit"
-          className="bg-green-500 text-gray-100 rounded-md px-4 py-2"
+          className="bg-green-500 text-gray-100 rounded-md px-4 py-2"login
+          disabled={isLoading}
         >
           Login
         </button>

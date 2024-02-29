@@ -12,12 +12,21 @@ export async function LoginApi({ email, password }) {
   return { data, error };
 }
 
-
-
 export async function getCurrentUser() {
-  const { data: session } = await supabase.auth.getSession();
-  if (!session.session) return null;
-  const { data, error } = await supabase.auth.getUser();
-  console.log(data);
-  return data?.user;
+  try {
+   /*  const response = await supabase.auth.getSession();
+    const sessionData = response.data;
+
+    if (!sessionData.session) return null; */
+
+    const userResponse = await supabase.auth.getUser();
+    const userData = userResponse.data;
+
+    if (!userData) return null;
+
+    return userData.user;
+  } catch (error) {
+    console.error("Error getting current user:", error);
+    return null;
+  }
 }

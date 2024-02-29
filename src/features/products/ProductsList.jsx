@@ -16,11 +16,14 @@ function ProductsList({ product }) {
     category,
   } = product;
 
-const discountPercentage = ((discount / price) * 100).toFixed(2);
+  const discountPercentage = ((discount / price) * 100).toFixed(2);
   const priceAfterDiscount = price - discount;
 
   return (
-    <Link to={`/singleProduct/${id}`} className="hover:shadow-xl hover:border border-slate-800 rounded-md transition-all  ease-linear">
+    <Link
+      to={`/singleProduct/${id}`}
+      className="hover:shadow-2xl  hover:contrast-100 rounded-md transition-all  ease-linear"
+    >
       <div className="rounded-md flex flex-col bg-gray-200 dark:bg-gray-800  gap-2">
         <div className="relative">
           {!inStock && (
@@ -39,12 +42,16 @@ const discountPercentage = ((discount / price) * 100).toFixed(2);
             {title}
           </h1>
           <div className="flex justify-between items-center">
-          <h3 className="text-orange-600 font-md">Rs. {priceAfterDiscount}</h3>
-          {deliveryFree ? <FreeDelivery deliveryFree={deliveryFree} /> : ""}
+            <h3 className="text-orange-600 font-md">
+              Rs. {priceAfterDiscount}
+            </h3>
+            {deliveryFree ? <FreeDelivery deliveryFree={deliveryFree} /> : ""}
           </div>
 
           {discount === 0 ? (
-            <span className="text-sm text-gray-700 text-red-600">No discount</span>
+            <span className="text-sm text-gray-700 text-red-600">
+              No discount
+            </span>
           ) : (
             <section className="flex gap-2 text-sm">
               <h3 className=" dark:text-gray-300 line-through text-gray-600 decoration-gary-600">
