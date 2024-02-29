@@ -8,7 +8,7 @@ import {
 } from "react-icons/fa";
 const ShareSocials = () => {
   return (
-    <div className="flex items-center bg-gray-200 p-2 rounded-md">
+    <div className="flex items-center bg-gray-200 p-2 rounded-md w-52">
       <h3 className="">Share via:</h3>
       <span className="flex gap-2">
         <Socials>

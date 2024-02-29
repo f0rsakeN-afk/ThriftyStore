@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-
+import { FaEyeSlash } from "react-icons/fa";
+import { IoEyeSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { useLogin } from "./Login";
 

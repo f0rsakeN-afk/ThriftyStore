@@ -18,7 +18,7 @@ function Delivery({ company, days, text, icon, text2 }) {
 
       <p className="ml-6 p-2 bg-gray-100 dark:bg-gray-700 dark:text-gray-200 text-sm text-gray-600 rounded-md">
         Enjoy free shipping promotion with minimum spend of Rs. 699 from
-        <span className="text-blue-600"> {company}</span>
+        <span className="text-blue-600 cursor-pointer"> {company}</span>
       </p>
     </div>
   );

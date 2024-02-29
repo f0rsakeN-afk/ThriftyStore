@@ -1,6 +1,7 @@
 import React from "react";
 import FreeDelivery from "../../components/FreeDelivery";
 import { Link } from "react-router-dom";
+import StarRating from "../../components/StarRating";
 
 function ProductsList({ product }) {
   const {
@@ -49,18 +50,24 @@ function ProductsList({ product }) {
           </div>
 
           {discount === 0 ? (
-            <span className="text-sm text-gray-700 text-red-600">
-              No discount
-            </span>
+            <div className="flex justify-between">
+              <span className="text-sm text-gray-700 text-red-600">
+                No discount
+              </span>
+              <StarRating rating={rating} />
+            </div>
           ) : (
-            <section className="flex gap-2 text-sm">
-              <h3 className=" dark:text-gray-300 line-through text-gray-600 decoration-gary-600">
-                Rs. {price}
-              </h3>
-              <h2 className="text-gray-700 dark:text-gray-200">
-                -{discountPercentage}%
-              </h2>
-            </section>
+            <div className="flex justify-between">
+              <section className="flex gap-2 text-sm">
+                <h3 className=" dark:text-gray-300 line-through text-gray-600 decoration-gary-600">
+                  Rs. {price}
+                </h3>
+                <h2 className="text-gray-700 dark:text-gray-200">
+                  -{discountPercentage}%
+                </h2>
+              </section>
+              <StarRating rating={rating} />
+            </div>
           )}
         </div>
       </div>

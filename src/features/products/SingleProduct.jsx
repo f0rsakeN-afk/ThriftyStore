@@ -49,7 +49,7 @@ function SingleProduct() {
               {title}
             </h1>
 
-            <section className="">
+            <section className="flex justify-between items-center">
               <StarRating rating={rating} />
               <ShareAndWishlist />
             </section>
