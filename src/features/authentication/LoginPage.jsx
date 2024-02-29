@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { FaEyeSlash } from "react-icons/fa";
 import { IoEyeSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
-import { LoginUser } from "./Login";
+import { useLogin } from "./Login";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { isLoading, login } = LoginUser();
+  const { isLoading, login } = useLogin();
 
   function togglePasswordVisibility() {
     setShowPassword(!showPassword);

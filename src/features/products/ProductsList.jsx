@@ -20,7 +20,7 @@ const discountPercentage = ((discount / price) * 100).toFixed(2);
   const priceAfterDiscount = price - discount;
 
   return (
-    <Link to={`/singleProduct/${id}`}>
+    <Link to={`/singleProduct/${id}`} className="hover:shadow-xl hover:border border-slate-800 rounded-md transition-all  ease-linear">
       <div className="rounded-md flex flex-col bg-gray-200 dark:bg-gray-800  gap-2">
         <div className="relative">
           {!inStock && (

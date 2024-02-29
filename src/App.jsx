@@ -12,8 +12,8 @@ import WIshlist from "./pages/WIshlist";
 import Profile from "./pages/Profile";
 import About from "./pages/About";
 import SingleProduct from "./features/products/SingleProduct";
-import LoginPage from "./features/authentication/LoginPage";
-import Signup from "./features/authentication/Signup";
+//import LoginPage from "./features/authentication/LoginPage";
+//import Signup from "./features/authentication/Signup";
 
 const App = () => {
   const queryClient = new QueryClient({
@@ -40,8 +40,8 @@ const App = () => {
               <Route path="singleProduct/:id" element={<SingleProduct />} />
             </Route>
             <Route path="*" element={<PageNotFound />} />
-            <Route path="signup" element={<Signup />} />
-            <Route path="login" element={<LoginPage />} />
+            {/* <Route path="signup" element={<Signup />} />
+            <Route path="login" element={<LoginPage />} /> */}
           </Routes>
         </BrowserRouter>
         <Toaster

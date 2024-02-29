@@ -1,14 +1,23 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { getProducts } from "./Products";
+import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../../components/Spinner";
 import ShareAndWishlist from "../../components/ShareAndWishlist";
 import HomeProductSample from "../../components/HomeproductSample";
-import SIngleProductRightSidebar from "../../components/SIngleProductRightSidebar";
+import SingleProductRightSidebar from '../../components/SIngleProductRightSidebar'
 import StarRating from "../../components/StarRating";
+import {
+  addItem,
+  decreaseQuantity,
+  getCurrentQuantityById,
+  increaseQuantity,
+} from "../cart/CartSlice";
 
 function SingleProduct() {
   const { id } = useParams();
+  const dispatch = useDispatch(); // Get dispatch function
+  const currentQuantity = useSelector(getCurrentQuantityById(id)); // Get current quantity from Redux store
   //console.log(id);
   const { isLoading, products } = getProducts();
   if (isLoading) return <Spinner />;
@@ -30,6 +39,9 @@ function SingleProduct() {
 
   const discountPercentage = ((discount / price) * 100).toFixed(2);
   const priceAfterDiscount = price - discount;
+
+  
+
   return (
     <div className="">
       <div className="grid grid-cols-4  gap-4 py-8">
@@ -45,7 +57,7 @@ function SingleProduct() {
             </h1>
 
             <section className="">
-              <StarRating rating={rating}/>
+              <StarRating rating={rating} />
               <ShareAndWishlist />
             </section>
             <hr className="py-1" />
@@ -72,17 +84,23 @@ function SingleProduct() {
               <section className="flex gap-4 py-2 items-center">
                 <h2 className="text-gray-700 dark:text-gray-200">Quantity</h2>
                 <div className="flex gap-2 items-center">
-                  <button className="text-gray-700 py-2 px-4 rounded-sm text-xl bg-gray-200 hover:text-gray-800 hover:bg-gray-300 dark:invert ">
+                  <button
+                    className="text-gray-700 py-2 px-4 rounded-sm text-xl bg-gray-200 hover:text-gray-800 hover:bg-gray-300 dark:invert "
+                    onClick={() => dispatch(decreaseQuantity({ singleProduct }))}
+                  >
                     -
                   </button>
-                  <h3 className="text-gray-700 dark:text-gray-200">ds</h3>
-                  <button className="text-gray-700 py-2 px-4 rounded-sm text-xl bg-gray-200 hover:text-gray-800 hover:bg-gray-300 dark:invert ">
+                  <h3 className="text-gray-700 dark:text-gray-200">{currentQuantity}</h3>
+                  <button
+                    className="text-gray-700 py-2 px-4 rounded-sm text-xl bg-gray-200 hover:text-gray-800 hover:bg-gray-300 dark:invert "
+                    onClick={() => dispatch(increaseQuantity({singleProduct}))}
+                  >
                     +
                   </button>
                 </div>
               </section>
               {inStock ? (
-                <button className="px-4 py-2 bg-orange-400 hover:bg-orange-500 transition-colors duration-200 ease-linear text-gray-50 font-semibold rounded-sm shadow-md">
+                <button className="px-4 py-2 bg-orange-400 hover:bg-orange-500 transition-colors duration-200 ease-linear text-gray-50 font-semibold rounded-sm shadow-md" onClick={()=>dispatch(addItem({singleProduct}))}>
                   Add to Cart
                 </button>
               ) : (
@@ -90,7 +108,9 @@ function SingleProduct() {
                   <h2 className="text-xl font-semibold text-red-600 italic">
                     Out of Stock
                   </h2>
-                  <span className="text-green-600  text-xs">Will be available soon</span>
+                  <span className="text-green-600  text-xs">
+                    Will be available soon
+                  </span>
                 </div>
               )}
             </div>
@@ -99,7 +119,7 @@ function SingleProduct() {
             </p>
           </div>
         </div>
-        <SIngleProductRightSidebar soldBy={soldBy} />
+        <SingleProductRightSidebar soldBy={soldBy} />
       </div>
       <HomeProductSample />
     </div>
