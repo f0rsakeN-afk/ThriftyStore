@@ -1,16 +1,11 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { getUserData } from "./getProfileInfo";
-import { updateProfileInfo } from "./updateProfile";
+
 import { FaEyeSlash } from "react-icons/fa";
 import { IoEyeSharp } from "react-icons/io5";
 
 const UpdateProfileForm = () => {
-  const { data } = getUserData();
-  const { isLoading, update } = updateProfileInfo();
-  const { formState, handleSubmit, register } = useForm({
-    defaultValues: data,
-  });
+  const { formState, handleSubmit, register } = useForm();
   const { errors } = formState;
 
   const [showPassword, setShowPassword] = useState(false);
@@ -20,7 +15,7 @@ const UpdateProfileForm = () => {
   }
   function onSubmit(data) {
     //console.log(data);
-    update(data);
+  
   }
 
   function onError(err) {

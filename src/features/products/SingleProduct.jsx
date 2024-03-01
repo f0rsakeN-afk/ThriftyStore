@@ -1,7 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { getProducts } from "./Products";
-
 import Spinner from "../../components/Spinner";
 import ShareAndWishlist from "../../components/ShareAndWishlist";
 import HomeProductSample from "../../components/HomeproductSample";

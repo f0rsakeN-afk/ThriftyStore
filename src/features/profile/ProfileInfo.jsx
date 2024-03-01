@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-import { getUserData } from "./getProfileInfo";
+
 import Spinner from "../../components/Spinner";
 import { formatDistanceToNow } from "date-fns";
-import UpdateProfileForm from "./UpdateProfileForm";
+
 
 const ProfileInfo = () => {
-  const { isLoading, data: userData } = getUserData();
+
   const [showForm, setShowForm] = useState(false);
 
   if (isLoading) return <Spinner />;
-  const dateString = userData.created_at;
-  const formattedDate = formatDistanceToNow(new Date(dateString), {
+  //const dateString = userData.created_at;
+ /*  const formattedDate = formatDistanceToNow(new Date(dateString), {
     addSuffix: true,
-  });
+  }); */
 
   function handleClick() {
     setShowForm(!showForm);
@@ -21,13 +21,13 @@ const ProfileInfo = () => {
     <div className="">
       <div className="flex gap-2 flex-col bg-gray-300 w-max p-4 rounded-md shaodw-xl dark:bg-gray-800 mt-6">
         <h2 className="text-sm text-gray-700 dark:text-gray-200">
-          UserId: {userData.id}
+          UserId: 
         </h2>
         <p className="text-sm text-gray-700 dark:text-gray-200">
-          Email Address: {userData.email}
+          Email Address
         </p>
         <h3 className="text-sm text-gray-700 dark:text-gray-200">
-          Confirmed At: {formattedDate}
+          Confirmed At: 
         </h3>
 
         <section className="flex justify-center">

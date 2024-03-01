@@ -12,9 +12,7 @@ import WIshlist from "./pages/WIshlist";
 import Profile from "./pages/Profile";
 import About from "./pages/About";
 import SingleProduct from "./features/products/SingleProduct";
-import LoginPage from "./features/authentication/LoginPage";
-import SignUp from "./features/authentication/SignUp";
-import PrivateRoutes from "./features/authentication/PrivateRoutes";
+
 
 const App = () => {
   const queryClient = new QueryClient({
@@ -32,24 +30,20 @@ const App = () => {
         <ReactQueryDevtools initialIsOpen={false} />
         <BrowserRouter>
           <Routes>
-            <Route
-              path="/"
-              element={<PrivateRoutes />} // Protect all routes under PrivateRoutes
-            >
-              <Route element={<Applayout />}>
-                <Route index element={<Navigate replace to="home" />} />
-                <Route path="home" element={<Home />} />
-                <Route path="cart" element={<Cart />} />
-                <Route path="products" element={<Products />} />
-                <Route path="wishlist" element={<WIshlist />} />
-                <Route path="about" element={<About />} />
-                <Route path="profile" element={<Profile />} />
-                <Route path="singleProduct/:id" element={<SingleProduct />} />
-              </Route>
+            <Route element={<Applayout />}>
+              <Route index element={<Navigate replace to="home" />} />
+              <Route path="home" element={<Home />} />
+              <Route path="cart" element={<Cart />} />
+              <Route path="products" element={<Products />} />
+              <Route path="wishlist" element={<WIshlist />} />
+              <Route path="about" element={<About />} />
+              <Route path="profile" element={<Profile />} />
+              <Route path="singleProduct/:id" element={<SingleProduct />} />
             </Route>
+
             <Route path="*" element={<PageNotFound />} />
-            <Route path="signup" element={<SignUp />} />
-            <Route path="login" element={<LoginPage />} />
+        {/*     <Route path="signup" element={<SignUp />} />
+            <Route path="login" element={<LoginPage />} /> */}
           </Routes>
         </BrowserRouter>
         <Toaster
