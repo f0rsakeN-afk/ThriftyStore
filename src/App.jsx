@@ -12,13 +12,14 @@ import WIshlist from "./pages/WIshlist";
 import Profile from "./pages/Profile";
 import About from "./pages/About";
 import SingleProduct from "./features/products/SingleProduct";
-
+import SignUp from "./features/authentication/SignUp";
+import Login from "./features/authentication/Login";
 
 const App = () => {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
-        staleTime: 3600 * 1000,
+        staleTime: 60 * 1000,
         cacheTime: 600 * 1000,
       },
     },
@@ -42,8 +43,8 @@ const App = () => {
             </Route>
 
             <Route path="*" element={<PageNotFound />} />
-        {/*     <Route path="signup" element={<SignUp />} />
-            <Route path="login" element={<LoginPage />} /> */}
+             <Route path="signup" element={<SignUp />} />
+            <Route path="login" element={<Login/>} /> 
           </Routes>
         </BrowserRouter>
         <Toaster
