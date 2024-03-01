@@ -15,6 +15,7 @@ import SingleProduct from "./features/products/SingleProduct";
 import SignUp from "./features/authentication/SignUp";
 import Login from "./features/authentication/Login";
 
+
 const App = () => {
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -43,8 +44,8 @@ const App = () => {
             </Route>
 
             <Route path="*" element={<PageNotFound />} />
-             <Route path="signup" element={<SignUp />} />
-            <Route path="login" element={<Login/>} /> 
+            <Route path="signup" element={<SignUp />} />
+            <Route path="login" element={<Login />} />
           </Routes>
         </BrowserRouter>
         <Toaster

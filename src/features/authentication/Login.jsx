@@ -1,21 +1,28 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "./AuthProvider";
 import { Wrapper } from "./SignUp";
+import logo from "../../assets/logo.webp";
+import toast from "react-hot-toast";
 
 const Login = () => {
-  const emailRef = useRef(null);
-  const passwordRef = useRef(null);
-
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const login = useAuth();
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    console.log(email,password)
   };
+
   return (
     <div className="flex flex-col gap-4 justify-center items-center h-screen">
-      <form className="border border-gray-400 rounded-md p-6">
+      <img src={logo} alt="logo-image" className="w-32" />
+      <form
+        className="border border-gray-400 rounded-md p-6"
+        onSubmit={handleSubmit}
+      >
         <p className="text-5xl tracking-wide text-gray-800 font-semibold text-center">
           Login
         </p>
@@ -24,20 +31,22 @@ const Login = () => {
             <label className="text-xl text-gray-700">Email</label>
             <input
               type="email"
-              ref={emailRef}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               id="email"
               required
-              className="p-2 rounded-md focus:outline-none border w-[25rem]"
+              className="p-2 rounded-md focus:outline-none border w-72 md:w-[25rem] "
             />
           </Wrapper>
           <Wrapper>
             <label className="text-xl text-gray-700">Password</label>
             <input
               type="password"
-              ref={passwordRef}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               id="password"
               required
-              className="p-2 rounded-md focus:outline-none border w-[25rem]"
+              className="p-2 rounded-md focus:outline-none border md:w-[25rem]"
             />
           </Wrapper>
           <button
@@ -47,16 +56,16 @@ const Login = () => {
             Login
           </button>
         </div>
-        <p className="text-xl text-gray-700 text-center">
-          Not a User?{" "}
-          <Link
-            to="/signup"
-            className="text-blue-600 underline underline-offset-2"
-          >
-            SignUp
-          </Link>
-        </p>
       </form>
+      <p className="text-xl text-gray-700 text-center">
+        Not a User?{" "}
+        <Link
+          to="/signup"
+          className="text-blue-600 underline underline-offset-2"
+        >
+          SignUp
+        </Link>
+      </p>
     </div>
   );
 };

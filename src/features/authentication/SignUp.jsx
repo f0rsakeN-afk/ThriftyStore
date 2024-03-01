@@ -1,61 +1,25 @@
 import React, { useRef } from "react";
-import supabase from "../../services/supabase";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import logo from "../../assets/logo.webp";
 
 const SignUp = () => {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const confirmPasswordRef = useRef(null);
-
-  const register = async (email, password) => {
-    try {
-      const { user, error } = await supabase.auth.signUp({ email, password });
-      if (error) {
-        throw error;
-      }
-      // Handle successful registration (e.g., redirect to login page)
-    } catch (error) {
-      console.error("Sign up error:", error.message);
-      toast.error("Failed to sign up. Please try again.");
-    }
-  };
+  const navigate = useNavigate();
+  
+ 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const email = emailRef.current.value;
-    const password = passwordRef.current.value;
-    const confirmPassword = confirmPasswordRef.current.value;
-
-    if (!email || !password || !confirmPassword) {
-      toast.error("Please fill in all fields.");
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      toast.error("Passwords do not match.");
-      return;
-    }
-
-    // Call the register function with email and password
-    try {
-      const { data, error } = await register(
-        emailRef.current.value,
-        passwordRef.current.value,
-      );
-      if (!error && data) {
-        toast.success(
-          "Registration successful. Check your email to confirm your account",
-        );
-      }
-    } catch (error) {
-      toast.error("Error creating accouunt");
-    }
+    
   };
 
   return (
     <div className="flex flex-col gap-4 h-screen items-center justify-center">
+      <img src={logo} alt="logo-image" className="w-32" />
       <form
         onSubmit={handleSubmit}
         className="border border-gray-400 rounded-md p-6"
@@ -73,7 +37,7 @@ const SignUp = () => {
               id="email"
               ref={emailRef}
               required
-              className="p-2 rounded-md focus:outline-none border w-[25rem]"
+              className="p-2 rounded-md focus:outline-none border w-72 md:w-[25rem]"
             />
           </Wrapper>
           <Wrapper>
@@ -85,7 +49,7 @@ const SignUp = () => {
               id="password"
               ref={passwordRef}
               required
-              className="p-2 rounded-md focus:outline-none border w-[25rem]"
+              className="p-2 rounded-md focus:outline-none border w-72 md:w-[25rem]"
             />
           </Wrapper>
           <Wrapper>
@@ -97,7 +61,7 @@ const SignUp = () => {
               id="confirm-password"
               ref={confirmPasswordRef}
               required
-              className="p-2 rounded-md focus:outline-none border w-[25rem]"
+              className="p-2 rounded-md focus:outline-none border w-72 md:w-[25rem]"
             />
           </Wrapper>
           <button
