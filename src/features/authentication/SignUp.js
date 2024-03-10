@@ -2,7 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { SignUpApi } from "../../services/SignUpApi";
 import toast from "react-hot-toast";
 
-export function SignUp() {
+export default function SignUp() {
   const { data, mutate: signup } = useMutation({
     mutationFn: ({ email, password }) => SignUpApi({ email, password }),
     onSuccess: () => {
