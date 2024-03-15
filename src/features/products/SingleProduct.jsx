@@ -6,12 +6,12 @@ import ShareAndWishlist from "../../components/ShareAndWishlist";
 import HomeProductSample from "../../components/HomeproductSample";
 import SingleProductRightSidebar from "../../components/SIngleProductRightSidebar";
 import StarRating from "../../components/StarRating";
-
+import { useDispatch } from "react-redux";
+import { add } from "../cart/cartSlice";
 
 function SingleProduct() {
-
   const { id } = useParams();
- 
+  const dispatch = useDispatch();
 
   const { isLoading, products } = getProducts();
   if (isLoading) return <Spinner />;
@@ -86,10 +86,7 @@ function SingleProduct() {
                 </div>
               </section>
               {inStock ? (
-                <button
-                  className="px-4 py-2 bg-orange-400 hover:bg-orange-500 transition-colors duration-200 ease-linear text-gray-50 font-semibold rounded-sm shadow-md"
-                  
-                >
+                <button className="px-4 py-2 bg-orange-400 hover:bg-orange-500 transition-colors duration-200 ease-linear text-gray-50 font-semibold rounded-sm shadow-md" onClick={()=>dispatch(add(singleProduct))}>
                   Add to Cart
                 </button>
               ) : (
