@@ -2,14 +2,18 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RiSubtractFill } from "react-icons/ri";
 import { IoAdd } from "react-icons/io5";
-import { remove } from "./cartSlice";
+import {
+  decreaseItemQuantity,
+  increaseItemQuantity,
+  remove,
+} from "./cartSlice";
 import ClearCart from "./ClearCart";
 import NoItem from "./NoItem";
 
 const CartItems = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.cart.cart);
-  console.log(data);
+  //console.log(data);
 
   return (
     <>
@@ -40,12 +44,18 @@ const CartItems = () => {
                   {item.title}
                 </h2>
                 <div className=" flex gap-4 items-center justify-center text-gray-700 dark:text-gray-200">
-                  <button className="">
-                    <IoAdd />
+                  <button
+                    className="text-gray-700 py-2 px-4 rounded-sm text-xl bg-gray-200 hover:text-gray-800 hover:bg-gray-300 dark:invert "
+                    onClick={() => dispatch(decreaseItemQuantity(item.id))}
+                  >
+                    <RiSubtractFill />
                   </button>
                   <span className="">{item.quantity}</span>
-                  <button className="">
-                    <RiSubtractFill />
+                  <button
+                    className="text-gray-700 py-2 px-4 rounded-sm text-xl bg-gray-200 hover:text-gray-800 hover:bg-gray-300 dark:invert "
+                    onClick={() => dispatch(increaseItemQuantity(item.id))}
+                  >
+                    <IoAdd />
                   </button>
                 </div>
                 <h2 className="text-green-600  font-semibold">

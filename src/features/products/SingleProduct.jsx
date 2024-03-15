@@ -6,12 +6,20 @@ import ShareAndWishlist from "../../components/ShareAndWishlist";
 import HomeProductSample from "../../components/HomeproductSample";
 import SingleProductRightSidebar from "../../components/SIngleProductRightSidebar";
 import StarRating from "../../components/StarRating";
-import { useDispatch } from "react-redux";
-import { add } from "../cart/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  add,
+  decreaseItemQuantity,
+  increaseItemQuantity,
+} from "../cart/cartSlice";
 
 function SingleProduct() {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const { quantity } = useSelector(
+    (state) =>
+      state.cart.cart.find((item) => item.id === parseInt(id)) || { quantity: 1 },
+  );
 
   const { isLoading, products } = getProducts();
   if (isLoading) return <Spinner />;
@@ -76,17 +84,30 @@ function SingleProduct() {
               <section className="flex gap-4 py-2 items-center">
                 <h2 className="text-gray-700 dark:text-gray-200">Quantity</h2>
                 <div className="flex gap-2 items-center">
-                  <button className="text-gray-700 py-2 px-4 rounded-sm text-xl bg-gray-200 hover:text-gray-800 hover:bg-gray-300 dark:invert ">
+                  <button
+                    className="text-gray-700 py-2 px-4 rounded-sm text-xl bg-gray-200 hover:text-gray-800 hover:bg-gray-300 dark:invert "
+                    onClick={() =>
+                      dispatch(decreaseItemQuantity(singleProduct.id))
+                    }
+                  >
                     -
                   </button>
-                  <h3 className="text-gray-700 dark:text-gray-200">1</h3>
-                  <button className="text-gray-700 py-2 px-4 rounded-sm text-xl bg-gray-200 hover:text-gray-800 hover:bg-gray-300 dark:invert ">
+                  <h3 className="text-gray-700 dark:text-gray-200">{quantity}</h3>
+                  <button
+                    className="text-gray-700 py-2 px-4 rounded-sm text-xl bg-gray-200 hover:text-gray-800 hover:bg-gray-300 dark:invert "
+                    onClick={() =>
+                      dispatch(increaseItemQuantity(singleProduct.id))
+                    }
+                  >
                     +
                   </button>
                 </div>
               </section>
               {inStock ? (
-                <button className="px-4 py-2 bg-orange-400 hover:bg-orange-500 transition-colors duration-200 ease-linear text-gray-50 font-semibold rounded-sm shadow-md" onClick={()=>dispatch(add(singleProduct))}>
+                <button
+                  className="px-4 py-2 bg-orange-400 hover:bg-orange-500 transition-colors duration-200 ease-linear text-gray-50 font-semibold rounded-sm shadow-md"
+                  onClick={() => dispatch(add(singleProduct))}
+                >
                   Add to Cart
                 </button>
               ) : (

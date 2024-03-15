@@ -7,10 +7,15 @@ import { IoCartOutline, IoPersonCircleSharp } from "react-icons/io5";
 import { FaRegHeart } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross1 } from "react-icons/rx";
+import { useSelector } from "react-redux";
 
 function Header() {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
+
+  const data = useSelector((state) => state.cart.cart);
+  const totalCartItems = data.length;
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -28,10 +33,15 @@ function Header() {
         <img src={logo} alt="logo-image" className="w-32 " />
       </NavLink>
       <div className=" hidden md:flex gap-8 justify-center items-center ">
-        <Navlink to={'about'} text={'About'}/>
+        <Navlink to={"about"} text={"About"} />
         <Navlink to={"products"} text={"Products"} />
         <Navlink to={"wishlist"} text={<FaRegHeart size={24} />} />
-        <Navlink to={"cart"} text={<IoCartOutline size={24} />} />
+        <div className="relative">
+          <Navlink to={"cart"} text={<IoCartOutline size={24} />} />
+          <span className="absolute top-3 text-sm -right-2 text-red-600 font-semibold  rounded-full ">
+            {data.length > 0 && totalCartItems}
+          </span>
+        </div>
         <Navlink to={"profile"} text={<IoPersonCircleSharp size={24} />} />
         <DarkModeToggler />
       </div>
@@ -45,7 +55,7 @@ function Header() {
             <Navlink to={"wishlist"} text={<FaRegHeart size={24} />} />
             <Navlink to={"cart"} text={<IoCartOutline size={24} />} />
             <Navlink to={"profile"} text={<IoPersonCircleSharp size={24} />} />
-            <DarkModeToggler/>
+            <DarkModeToggler />
           </div>
         )}
       </div>
