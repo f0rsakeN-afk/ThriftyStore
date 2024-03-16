@@ -1,15 +1,18 @@
 import React, { useState, useRef, useEffect } from "react";
 import { IoShareSocial } from "react-icons/io5";
-import { FaRegHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 import ShareSocials from "./ShareSocials";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addWishlist } from "../features/wishlist/WishlistSlice";
 
 const ShareAndWishlist = ({ singleProduct }) => {
   const [show, setShow] = useState(false);
   const ref = useRef(null);
   const dispatch = useDispatch();
-
+  const wishlist = useSelector((state) => state.wishlist.wishlist);
+  //console.log(wishlist);
+  const isAdded = wishlist.some((item) => item.id === singleProduct.id);
+  //console.log(isAdded)
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (ref.current && !ref.current.contains(event.target)) {
@@ -34,10 +37,10 @@ const ShareAndWishlist = ({ singleProduct }) => {
           <IoShareSocial />
         </button>
         <button
-          className=""
+          className={isAdded ? 'text-red-600' : 'text-slate-400'}
           onClick={() => dispatch(addWishlist(singleProduct))}
         >
-          <FaRegHeart />
+          <FaHeart />
         </button>
       </div>
       {show && (

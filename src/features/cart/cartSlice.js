@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
+import { removeWishlist } from "../wishlist/WishlistSlice";
 
 const initialState = {
   cart: [],
@@ -19,7 +20,8 @@ const cartSlice = createSlice({
       } else {
         state.cart.push({ ...newItem, quantity: 1 });
       }
-          toast.success('Product successfully added')
+      toast.success("Product successfully added");
+
     },
     remove(state, action) {
       return state.cart.filter((item) => item.id !== action.payload);
@@ -29,18 +31,24 @@ const cartSlice = createSlice({
     },
     increaseItemQuantity(state, action) {
       const item = state.cart.find((item) => item.id === action.payload);
-        item.quantity++;
-        toast.success('Quantity updated successfully')
+      item.quantity++;
+      toast.success("Quantity updated successfully");
     },
     decreaseItemQuantity(state, action) {
       const item = state.cart.find((item) => item.id === action.payload);
-        item.quantity--;
-        
-        if (item.quantity === 0) cartSlice.caseReducers.remove(state, action);
-        toast.success('Quantity updated successfully')
+      item.quantity--;
+
+      if (item.quantity === 0) cartSlice.caseReducers.remove(state, action);
+      toast.success("Quantity updated successfully");
     },
   },
 });
 
-export const { add, remove, clearCart,increaseItemQuantity,decreaseItemQuantity } = cartSlice.actions;
+export const {
+  add,
+  remove,
+  clearCart,
+  increaseItemQuantity,
+  decreaseItemQuantity,
+} = cartSlice.actions;
 export default cartSlice.reducer;

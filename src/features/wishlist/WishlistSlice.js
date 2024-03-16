@@ -11,18 +11,20 @@ const wishlistSlice = createSlice({
     addWishlist(state, action) {
       const newItem = action.payload;
       const alreadyAddedItem = state.wishlist.find(
-        (item) => item.id === newItem.id,
+        (item) => item.id === newItem.id
       );
-      {alreadyAddedItem? '':state.wishlist.push(newItem)}
+      if (!alreadyAddedItem) {
+        state.wishlist.push(newItem);
+      }
     },
     removeWishlist(state, action) {
-      return state.wishlist.filter((item) => item.id !== action.payload);
+      state.wishlist = state.wishlist.filter((item) => item.id !== action.payload);
     },
     clearWishlist(state, action) {
       state.wishlist = [];
     },
   },
 });
-export const { addWishlist, removeWishlist, clearWishlist } =
-  wishlistSlice.actions;
+
+export const { addWishlist, removeWishlist, clearWishlist } = wishlistSlice.actions;
 export default wishlistSlice.reducer;
