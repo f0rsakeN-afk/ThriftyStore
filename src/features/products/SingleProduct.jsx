@@ -18,11 +18,12 @@ function SingleProduct() {
   const dispatch = useDispatch();
   const { quantity } = useSelector(
     (state) =>
-      state.cart.cart.find((item) => item.id === parseInt(id)) || { quantity: 1 },
+      state.cart.cart.find((item) => item.id === parseInt(id)) || { quantity: 1 },[id]
   );
 
   const { isLoading, products } = getProducts();
   if (isLoading) return <Spinner />;
+  
   const singleProduct = products.find((p) => p.id === parseInt(id));
   // console.log(singleProduct);
   const {
@@ -58,7 +59,7 @@ function SingleProduct() {
 
             <section className="flex justify-between items-center">
               <StarRating rating={rating} />
-              <ShareAndWishlist />
+              <ShareAndWishlist singleProduct={singleProduct} />
             </section>
             <hr className="py-1" />
             {discount ? (

@@ -8,7 +8,7 @@ import {
   remove,
 } from "./cartSlice";
 import ClearCart from "./ClearCart";
-import NoItem from "./NoItem";
+import NoItem from "../../components/NoItem";
 
 const CartItems = () => {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ const CartItems = () => {
   return (
     <>
       {data.length === 0 ? (
-        <NoItem />
+        <NoItem  text={'cart'}/>
       ) : (
         <>
           <div className="flex justify-between items-center">

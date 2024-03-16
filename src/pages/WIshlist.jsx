@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import WishlistItems from "../features/wishlist/WishlistItems";
 
 function WIshlist() {
   return (
-    <div>WIshlist</div>
-  )
+    <div>
+      <WishlistItems />
+    </div>
+  );
 }
 
-export default WIshlist
+export default WIshlist;

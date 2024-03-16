@@ -2,10 +2,13 @@ import React, { useState, useRef, useEffect } from "react";
 import { IoShareSocial } from "react-icons/io5";
 import { FaRegHeart } from "react-icons/fa";
 import ShareSocials from "./ShareSocials";
+import { useDispatch } from "react-redux";
+import { addWishlist } from "../features/wishlist/WishlistSlice";
 
-const ShareAndWishlist = () => {
+const ShareAndWishlist = ({ singleProduct }) => {
   const [show, setShow] = useState(false);
   const ref = useRef(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -30,7 +33,10 @@ const ShareAndWishlist = () => {
         <button className="" onClick={handleClick}>
           <IoShareSocial />
         </button>
-        <button className="">
+        <button
+          className=""
+          onClick={() => dispatch(addWishlist(singleProduct))}
+        >
           <FaRegHeart />
         </button>
       </div>
