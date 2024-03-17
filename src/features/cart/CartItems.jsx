@@ -16,7 +16,6 @@ const CartItems = () => {
   const data = useSelector((state) => state.cart.cart);
   //console.log(data);
   const { price, discount, deliveryFree } = data;
-
   const totalPrice = data.reduce((acc, item) => {
     const price = item.price || 0;
     const discount = item.discount || 0;
@@ -73,14 +72,28 @@ const CartItems = () => {
                   </button>
                 </div>
                 <div className="">
-                  <h2 className="text-gray-600 dark:text-gray-300 text-xs font-semibold ">
+                  <h2
+                    className={
+                      item.discount
+                        ? "text-gray-600 dark:text-gray-300 text-xs font-semibold"
+                        : "font-semibold text-gray-700 dark:text-gray-200"
+                    }
+                  >
                     Actual Price:
-                    <span className="line-through">Rs.{item.price}</span>
+                    <span className={item.discount ? "line-through" : ""}>
+                      Rs.{item.price}
+                    </span>
                   </h2>
-                  <h2 className="text-xs text-orange-600">
-                    Discount:Rs.{item.discount}
-                  </h2>
-                  <h2 className="text-green-600 fonr-semibold trackind-wide font-semibold ">Price after discount:Rs.{item.price-item.discount}</h2>
+                  {item.discount > 0 && (
+                    <>
+                      <h2 className="text-xs text-orange-600">
+                        Discount:Rs.{item.discount}
+                      </h2>
+                      <h2 className="text-green-600 fonr-semibold trackind-wide font-semibold ">
+                        Price after discount:Rs.{item.price - item.discount}
+                      </h2>
+                    </>
+                  )}
                 </div>
                 <button
                   className="px-3 py-2 bg-red-600 text-gray-100 font-semibold w-max rounded-md focus:outline-none hover:bg-red-700 hover:shadow-xl "
@@ -91,14 +104,16 @@ const CartItems = () => {
               </div>
             ))}
             <div className="flex justify-between pt-4">
-              <div className="flex flex-col gap-2">
+              <div className="flex items-center gap-4">
                 <span className="text-gray-700 text-2xl dark:text-gray-200 font-semibold">
                   Total Amount:{" "}
                   <span className="text-green-600 italic">Rs.{totalPrice}</span>
-                  </span>
-                  <CheckoutButton/>
+                </span>
+                <CheckoutButton />
               </div>
-              <ClearCart />
+              <>
+                <ClearCart />
+              </>
             </div>
           </div>
         </>

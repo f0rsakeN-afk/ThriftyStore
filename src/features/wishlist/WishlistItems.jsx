@@ -8,7 +8,7 @@ import ClearWishlist from "./ClearWishlist";
 const WishlistItems = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.wishlist.wishlist);
- // console.log(data);
+  // console.log(data);
   const totalWishListitems = data ? data.length : 0;
   const handleRemoveItem = (itemId) => {
     dispatch(removeWishlist(itemId));
@@ -54,7 +54,10 @@ const WishlistItems = () => {
 
                   <button
                     className="px-4 py-2 bg-green-600 text-gray-100 font-semibold w-max rounded-md focus:outline-none hover:bg-green-700 hover:shadow-xl"
-                    onClick={() => dispatch(add(item))}
+                    onClick={() => {
+                      dispatch(add(item));
+                      dispatch(removeWishlist(item.id));
+                    }}
                   >
                     Add to Cart
                   </button>
@@ -62,8 +65,8 @@ const WishlistItems = () => {
               </div>
             ))}
           </div>
-            <div className="flex justify-end py-2">
-              <ClearWishlist/>
+          <div className="flex justify-end py-2">
+            <ClearWishlist />
           </div>
         </div>
       )}

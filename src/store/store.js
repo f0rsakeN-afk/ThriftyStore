@@ -6,6 +6,7 @@ const store = configureStore({
   reducer: {
     cart: cartReducer,
     wishlist: wishlistReducer,
+   
   },
 });
 export default store;
