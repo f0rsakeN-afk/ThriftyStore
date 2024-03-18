@@ -12,9 +12,9 @@ import WIshlist from "./pages/WIshlist";
 import Profile from "./pages/Profile";
 import About from "./pages/About";
 import SingleProduct from "./features/products/SingleProduct";
-import SignUp from "./features/authentication/SignUp";
-import Login from "./features/authentication/Login";
-
+import SignUpPage from "./features/authentication/SignUpPage";
+import LoginPage from "./features/authentication/LoginPage";
+import ProtectedRoute from "./pages/ProtectedRoute";
 
 const App = () => {
   const queryClient = new QueryClient({
@@ -32,7 +32,13 @@ const App = () => {
         <ReactQueryDevtools initialIsOpen={false} />
         <BrowserRouter>
           <Routes>
-            <Route element={<Applayout />}>
+            <Route
+              element={
+                <ProtectedRoute>
+                  <Applayout />
+                </ProtectedRoute>
+              }
+            >
               <Route index element={<Navigate replace to="home" />} />
               <Route path="home" element={<Home />} />
               <Route path="cart" element={<Cart />} />
@@ -44,8 +50,8 @@ const App = () => {
             </Route>
 
             <Route path="*" element={<PageNotFound />} />
-            <Route path="signup" element={<SignUp />} />
-            <Route path="login" element={<Login />} />
+            <Route path="signup" element={<SignUpPage />} />
+            <Route path="login" element={<LoginPage />} />
           </Routes>
         </BrowserRouter>
         <Toaster

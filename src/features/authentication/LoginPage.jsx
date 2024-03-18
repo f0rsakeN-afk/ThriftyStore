@@ -1,20 +1,19 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Wrapper } from "./SignUp";
+import { Login } from "./Login";
+import Wrapper from "../../components/Wrapper";
 import logo from "../../assets/logo.webp";
-import toast from "react-hot-toast";
 
-const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+const LoginPage = () => {
+  const [email, setEmail] = useState("test1234@example.com");
+  const [password, setPassword] = useState("test1234");
+  const { login, isLoading } = Login();
 
-
-  const handleSubmit = async (e) => {
+  function handleSubmit(e) {
     e.preventDefault();
-
-    console.log(email,password)
-  };
+    if (!email || !password) return;
+    login({ email, password });
+  }
 
   return (
     <div className="flex flex-col gap-4 justify-center items-center h-screen">
@@ -35,6 +34,7 @@ const Login = () => {
               onChange={(e) => setEmail(e.target.value)}
               id="email"
               required
+              disabled={isLoading}
               className="p-2 rounded-md focus:outline-none border w-72 md:w-[25rem] "
             />
           </Wrapper>
@@ -46,11 +46,13 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
               id="password"
               required
+              disabled={isLoading}
               className="p-2 rounded-md focus:outline-none border md:w-[25rem]"
             />
           </Wrapper>
           <button
             type="submit"
+            disabled={isLoading}
             className="px-4 py-2 bg-blue-600 font-semibold text-gray-100 rounded-md hover:bg-blue-700 transition-all ease-linear duration-150"
           >
             Login
@@ -70,4 +72,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPage;

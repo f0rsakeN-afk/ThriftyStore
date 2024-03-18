@@ -2,8 +2,9 @@ import React, { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import logo from "../../assets/logo.webp";
+import Wrapper from "../../components/Wrapper";
 
-const SignUp = () => {
+const SignUpPage = () => {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const confirmPasswordRef = useRef(null);
@@ -85,8 +86,5 @@ const SignUp = () => {
   );
 };
 
-export function Wrapper({ children }) {
-  return <div className="flex gap-2 flex-col">{children}</div>;
-}
 
-export default SignUp;
+export default SignUpPage;
