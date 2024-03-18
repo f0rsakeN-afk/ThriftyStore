@@ -1,18 +1,26 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Login } from "./Login";
 import Wrapper from "../../components/Wrapper";
 import logo from "../../assets/logo.webp";
 
 const LoginPage = () => {
-  const [email, setEmail] = useState("test1234@example.com");
+  const [email, setEmail] = useState("test@gmail.com");
   const [password, setPassword] = useState("test1234");
   const { login, isLoading } = Login();
 
   function handleSubmit(e) {
     e.preventDefault();
     if (!email || !password) return;
-    login({ email, password });
+    login(
+      { email, password },
+      {
+        onSettled: () => {
+          setEmail("");
+          setPassword("");
+        },
+      },
+    );
   }
 
   return (
@@ -73,3 +81,4 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+

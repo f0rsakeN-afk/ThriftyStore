@@ -1,79 +1,98 @@
-import React, { useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
+import React from "react";
+import { useForm } from "react-hook-form";
 import logo from "../../assets/logo.webp";
+import { Link } from "react-router-dom";
 import Wrapper from "../../components/Wrapper";
+import { useSignUp } from "./useSignUp";
 
 const SignUpPage = () => {
-  const emailRef = useRef(null);
-  const passwordRef = useRef(null);
-  const confirmPasswordRef = useRef(null);
-  const navigate = useNavigate();
-  
- 
+  const { register, formState, getValues, handleSubmit, reset } = useForm();
+  const { errors } = formState;
+  const { isLoading, signup } = useSignUp();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    
-  };
+  function onSubmit({ fullName, email, password }) {
+    signup(
+      { fullName, email, password },
+      {
+        onSettled: () => reset(),
+      },
+    );
+  }
 
   return (
-    <div className="flex flex-col gap-4 h-screen items-center justify-center">
+    <div className="flex flex-col gap-4 justify-center items-center h-screen">
       <img src={logo} alt="logo-image" className="w-32" />
       <form
-        onSubmit={handleSubmit}
         className="border border-gray-400 rounded-md p-6"
+        onSubmit={handleSubmit(onSubmit)}
       >
         <p className="text-5xl tracking-wide text-gray-800 font-semibold text-center">
-          Register
+          Signup
         </p>
         <div className="pt-6 flex flex-col gap-2">
           <Wrapper>
-            <label htmlFor="email" className="text-xl text-gray-700">
-              Email
-            </label>
+            <label error={errors?.fullName?.message}>Full Name</label>
             <input
-              type="email"
-              id="email"
-              ref={emailRef}
-              required
+              disabled={isLoading}
+              type="text"
               className="p-2 rounded-md focus:outline-none border w-72 md:w-[25rem]"
+              id="fullName"
+              {...register("fullName", { required: "This field is required" })}
+            />
+          </Wrapper>
+
+          <Wrapper>
+            <label error={errors?.email?.message}>Email Address</label>
+            <input
+              disabled={isLoading}
+              type="email"
+              className="p-2 rounded-md focus:outline-none border w-72 md:w-[25rem]"
+              id="email"
+              {...register("email", { required: "This field is required" })}
             />
           </Wrapper>
           <Wrapper>
-            <label htmlFor="password" className="text-xl text-gray-700">
-              Password
-            </label>
+            <label error={errors.password?.message}>Password</label>
             <input
               type="password"
               id="password"
-              ref={passwordRef}
-              required
-              className="p-2 rounded-md focus:outline-none border w-72 md:w-[25rem]"
+              disabled={isLoading}
+              className="p-2 rounded-md focus:outline-none border md:w-[25rem]"
+              {...register("password", {
+                required: "This field is required",
+                minLength: {
+                  value: 8,
+                  message: "Password needs a minimum of 8 characters",
+                },
+              })}
             />
           </Wrapper>
           <Wrapper>
-            <label htmlFor="confirm-password" className="text-xl text-gray-700">
-              Confirm Password
+            <label error={errors?.passwordConfirm?.message}>
+              Confirm password
             </label>
             <input
               type="password"
-              id="confirm-password"
-              ref={confirmPasswordRef}
-              required
-              className="p-2 rounded-md focus:outline-none border w-72 md:w-[25rem]"
+              disabled={isLoading}
+              id="passwordConfirm"
+              className="p-2 rounded-md focus:outline-none border md:w-[25rem]"
+              {...register("passwordConfirm", {
+                required: "This field is required",
+                validate: (value) =>
+                  value === getValues().password || "Password needs to match",
+              })}
             />
           </Wrapper>
           <button
             type="submit"
+            disabled={isLoading}
             className="px-4 py-2 bg-blue-600 font-semibold text-gray-100 rounded-md hover:bg-blue-700 transition-all ease-linear duration-150"
           >
-            Register
+            Submit
           </button>
         </div>
       </form>
-      <p className="text-xl text-gray-700">
+      <p className="text-xl text-gray-700 text-center">
         Already a User?{" "}
         <Link
           to="/login"
@@ -85,6 +104,5 @@ const SignUpPage = () => {
     </div>
   );
 };
-
 
 export default SignUpPage;

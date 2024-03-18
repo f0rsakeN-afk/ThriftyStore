@@ -1,24 +1,19 @@
-import React, { useState } from "react";
-
-import Spinner from "../../components/Spinner";
+import React from "react";
 import { formatDistanceToNow } from "date-fns";
-
+import LogOut from '../authentication/LogOut'
 
 const ProfileInfo = () => {
 
-  const [showForm, setShowForm] = useState(false);
 
-  if (isLoading) return <Spinner />;
   //const dateString = userData.created_at;
  /*  const formattedDate = formatDistanceToNow(new Date(dateString), {
     addSuffix: true,
   }); */
 
-  function handleClick() {
-    setShowForm(!showForm);
-  }
+
   return (
     <div className="">
+      <LogOut/>
       <div className="flex gap-2 flex-col bg-gray-300 w-max p-4 rounded-md shaodw-xl dark:bg-gray-800 mt-6">
         <h2 className="text-sm text-gray-700 dark:text-gray-200">
           UserId: 
@@ -30,16 +25,9 @@ const ProfileInfo = () => {
           Confirmed At: 
         </h3>
 
-        <section className="flex justify-center">
-          <button
-            className="text-gray-200 w-max text-center mt-4 px-3 py-2 bg-blue-600 hover:bg-blue-700 transition-colors ease-linear duration-150 font-semibold focus:outline-none rounded-sm"
-            onClick={handleClick}
-          >
-            {showForm ? "Close form" : "Edit credentials"}
-          </button>
-        </section>
+       
       </div>
-      {showForm && <UpdateProfileForm />}
+    
     </div>
   );
 };

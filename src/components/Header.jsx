@@ -44,6 +44,7 @@ function Header() {
         </div>
         <Navlink to={"profile"} text={<IoPersonCircleSharp size={24} />} />
         <DarkModeToggler />
+        
       </div>
       <div className="md:hidden text-blue-700 relative" ref={dropdownRef}>
         <button onClick={() => setOpen((open) => !open)}>
