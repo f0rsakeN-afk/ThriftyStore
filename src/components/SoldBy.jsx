@@ -1,6 +1,7 @@
 import React from "react";
 import { IoMdChatboxes } from "react-icons/io";
 
+
 const SoldBy = ({ soldBy }) => {
   return (
     <div className="bg-gray-200 dark:bg-gray-800 shadow-md rounded-md p-2 my-4">
@@ -29,8 +30,10 @@ const SoldBy = ({ soldBy }) => {
           <Percentage percent={`89%`} />
         </Wrapper>
       </div>
-    
-      <p className="pt-2 text-center text-[#1fafa4]  border-t border-slate-300 cursor-pointer">Visit Store</p>
+
+      <p className="pt-2 text-center text-[#1fafa4]  border-t border-slate-300 cursor-pointer">
+        Visit Store
+      </p>
     </div>
   );
 };

@@ -25,7 +25,7 @@ function ProductsTable() {
       <div className="flex justify-end p-2">
         <ProductOperations />
       </div>
-      <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-4 ">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 ">
         {filteredData.map((product) => (
           <ProductsList product={product} key={product.id} />
         ))}

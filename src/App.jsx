@@ -15,6 +15,7 @@ import SingleProduct from "./features/products/SingleProduct";
 import SignUpPage from "./features/authentication/SignUpPage";
 import LoginPage from "./features/authentication/LoginPage";
 import ProtectedRoute from "./pages/ProtectedRoute";
+import Checkout from "./pages/Checkout";
 
 const App = () => {
   const queryClient = new QueryClient({
@@ -47,6 +48,7 @@ const App = () => {
               <Route path="about" element={<About />} />
               <Route path="profile" element={<Profile />} />
               <Route path="singleProduct/:id" element={<SingleProduct />} />
+              <Route path="checkout" element={<Checkout/>} />
             </Route>
 
             <Route path="*" element={<PageNotFound />} />

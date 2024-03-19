@@ -1,3 +1,8 @@
+# Demo
+- **Email:** test@gmail.com
+- **Password:** test1234
+
+
 # Thrifty Store
 
 This is a shopping website built using React.js and Tailwind CSS. It utilizes various libraries and tools for data fetching, state management, and user interface enhancements.

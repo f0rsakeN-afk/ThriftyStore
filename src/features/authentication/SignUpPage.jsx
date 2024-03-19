@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import logo from "../../assets/logo.webp";
 import { Link } from "react-router-dom";
 import Wrapper from "../../components/Wrapper";
 import { useSignUp } from "./useSignUp";
+import { IoEyeOff } from "react-icons/io5";
+import { FaEye } from "react-icons/fa6";
 
 const SignUpPage = () => {
   const { register, formState, getValues, handleSubmit, reset } = useForm();
   const { errors } = formState;
   const { isLoading, signup } = useSignUp();
+  const [showPassword, setShowPassword] = useState(false);
 
   function onSubmit({ fullName, email, password }) {
     signup(
@@ -17,6 +20,11 @@ const SignUpPage = () => {
         onSettled: () => reset(),
       },
     );
+  }
+
+  function handlePassword(e) {
+    e.preventDefault();
+    setShowPassword(!showPassword);
   }
 
   return (
@@ -53,35 +61,69 @@ const SignUpPage = () => {
           </Wrapper>
           <Wrapper>
             <label error={errors.password?.message}>Password</label>
-            <input
-              type="password"
-              id="password"
-              disabled={isLoading}
-              className="p-2 rounded-md focus:outline-none border md:w-[25rem]"
-              {...register("password", {
-                required: "This field is required",
-                minLength: {
-                  value: 8,
-                  message: "Password needs a minimum of 8 characters",
-                },
-              })}
-            />
+            <section className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                disabled={isLoading}
+                className="p-2 rounded-md focus:outline-none border w-72 md:w-[25rem]"
+                {...register("password", {
+                  required: "This field is required",
+                  minLength: {
+                    value: 8,
+                    message: "Password needs a minimum of 8 characters",
+                  },
+                })}
+              />
+              {showPassword ? (
+                <button
+                  className="absolute right-2 text-xl top-3"
+                  onClick={handlePassword}
+                >
+                  <FaEye />
+                </button>
+              ) : (
+                <button
+                  className="absolute right-2 text-xl top-3"
+                  onClick={handlePassword}
+                >
+                  <IoEyeOff />
+                </button>
+              )}
+            </section>
           </Wrapper>
           <Wrapper>
             <label error={errors?.passwordConfirm?.message}>
               Confirm password
             </label>
-            <input
-              type="password"
-              disabled={isLoading}
-              id="passwordConfirm"
-              className="p-2 rounded-md focus:outline-none border md:w-[25rem]"
-              {...register("passwordConfirm", {
-                required: "This field is required",
-                validate: (value) =>
-                  value === getValues().password || "Password needs to match",
-              })}
-            />
+            <section className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                disabled={isLoading}
+                id="passwordConfirm"
+                className="p-2 rounded-md focus:outline-none border w-72 md:w-[25rem]"
+                {...register("passwordConfirm", {
+                  required: "This field is required",
+                  validate: (value) =>
+                    value === getValues().password || "Password needs to match",
+                })}
+              />
+              {showPassword ? (
+                <button
+                  className="absolute right-2 text-xl top-3"
+                  onClick={handlePassword}
+                >
+                  <FaEye />
+                </button>
+              ) : (
+                <button
+                  className="absolute right-2 text-xl top-3"
+                  onClick={handlePassword}
+                >
+                  <IoEyeOff />
+                </button>
+              )}
+            </section>
           </Wrapper>
           <button
             type="submit"

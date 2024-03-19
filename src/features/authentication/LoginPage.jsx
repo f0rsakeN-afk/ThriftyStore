@@ -3,11 +3,21 @@ import { Link } from "react-router-dom";
 import { Login } from "./Login";
 import Wrapper from "../../components/Wrapper";
 import logo from "../../assets/logo.webp";
+import { IoEyeOff } from "react-icons/io5";
+import { FaEye } from "react-icons/fa6";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("test@gmail.com");
   const [password, setPassword] = useState("test1234");
   const { login, isLoading } = Login();
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  function handlePassword(e) {
+    e.preventDefault();
+    setShowPassword(!showPassword);
+    //*console.log(showPassword)
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -48,15 +58,32 @@ const LoginPage = () => {
           </Wrapper>
           <Wrapper>
             <label className="text-xl text-gray-700">Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              id="password"
-              required
-              disabled={isLoading}
-              className="p-2 rounded-md focus:outline-none border md:w-[25rem]"
-            />
+            <section className=" relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                id="password"
+                required
+                disabled={isLoading}
+                className="p-2 rounded-md focus:outline-none border w-72 md:w-[25rem]"
+              />
+              {showPassword ? (
+                <button
+                  className="absolute right-2 text-xl top-3"
+                  onClick={handlePassword}
+                >
+                  <FaEye />
+                </button>
+              ) : (
+                <button
+                  className="absolute right-2 text-xl top-3"
+                  onClick={handlePassword}
+                >
+                  <IoEyeOff />
+                </button>
+              )}
+            </section>
           </Wrapper>
           <button
             type="submit"
@@ -81,4 +108,3 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
-

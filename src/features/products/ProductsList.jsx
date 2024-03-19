@@ -35,14 +35,14 @@ function ProductsList({ product }) {
           <img
             src={image}
             alt="product-image"
-            className="md:h-60 h-44 w-32 md:w-full rounded-md"
+            className="   h-52 md:h-60  w-full  rounded-md"
           />
         </div>
         <div className="p-2 flex flex-col gap-.5">
           <h1 className=" truncate text-gray-800 text-sm dark:text-gray-200">
             {title}
           </h1>
-          <div className="flex justify-between items-center">
+          <div className="flex  justify-between items-center">
             <h3 className="text-orange-600 font-md">
               Rs. {priceAfterDiscount}
             </h3>
@@ -50,14 +50,12 @@ function ProductsList({ product }) {
           </div>
 
           {discount === 0 ? (
-            <div className="flex justify-between">
-              <span className="text-sm text-gray-700 text-red-600">
-                No discount
-              </span>
+            <div className="flex flex-col md:flex-row justify-between">
+              <span className="text-sm  text-red-600">No discount</span>
               <StarRating rating={rating} />
             </div>
           ) : (
-            <div className="flex justify-between">
+            <div className="flex flex-col md:flex-row justify-between">
               <section className="flex gap-2 text-sm">
                 <h3 className=" dark:text-gray-300 line-through text-gray-600 decoration-gary-600">
                   Rs. {price}

@@ -22,7 +22,7 @@ function HomeproductSample() {
           Shop more
         </Link>
       </div>
-      <div className="grid grid-cols-3 lg:grid-cols-6 gap-2 overflow-x-auto">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2 overflow-x-auto">
         {someProducts.map((product) => (
           <ProductsList product={product} key={product.id} />
         ))}

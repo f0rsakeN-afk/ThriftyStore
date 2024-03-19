@@ -45,13 +45,13 @@ const CartItems = () => {
           <div className="flex flex-col gap-2 divide-y-2 divide-gray-600  ">
             {data.map((item) => (
               <div
-                className="grid grid-cols-5 items-center  justify-center p-2   gap-8"
+                className="grid md:grid-cols-5 items-center  justify-center p-2   gap-8"
                 key={item.id}
               >
                 <img
                   src={item.image}
                   alt="product image"
-                  className="h-36 w-36 rounded-sm drop-shadow-xl"
+                  className=" h-64 md:h-36 w-full md:w-36 rounded-sm drop-shadow-xl"
                 />
                 <h2 className="text-sm text-gray-800 dark:text-gray-200 ">
                   {item.title}
@@ -103,7 +103,7 @@ const CartItems = () => {
                 </button>
               </div>
             ))}
-            <div className="flex justify-between pt-4">
+            <div className="flex flex-col md:flex-row justify-between pt-4">
               <div className="flex items-center gap-4">
                 <span className="text-gray-700 text-2xl dark:text-gray-200 font-semibold">
                   Total Amount:{" "}

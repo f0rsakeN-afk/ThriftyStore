@@ -45,13 +45,13 @@ function SingleProduct() {
 
   return (
     <div className="">
-      <div className="grid grid-cols-4  gap-4 py-8">
+      <div className="grid md:grid-cols-4  gap-4 py-8">
         <img
           src={image}
           alt="product-image"
           className="w-full h-92 rounded-md  "
         />
-        <div className="col-span-2">
+        <div className="md:col-span-2">
           <div className="">
             <h1 className="text-3xl font-semibold text-gray-700 dark:text-gray-200 pb-2 tracking-wide">
               {title}
