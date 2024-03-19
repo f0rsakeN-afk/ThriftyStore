@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { RxCross1 } from "react-icons/rx";
+import PaymentOptions from "../components/PaymentOptions";
 
 const Checkout = () => {
   const cartData = useSelector((state) => state.cart.cart);
@@ -25,27 +26,28 @@ const Checkout = () => {
         <h2 className="text-gray-700 dark:text-gray-200 font-semibold text-2xl underline  underline-offset-2 uppercase tracking-wide">
           Items
         </h2>
-        <section className="border w-max p-2 rounded-md border-slate-400 shadow-xl">
+        <section className="border w-full lg:w-max p-2 rounded-md border-slate-400 shadow-xl">
           {cartData.map((item) => (
-            <div className="py-2" key={item.id}>
-              <p className="flex items-center gap-6 text-gray-700 dark:text-gray-200">
+            <div className="py-2 " key={item.id}>
+              <p className="flex items-center md:text-sm lg:text-base  gap-6 text-gray-700 dark:text-gray-200">
                 {item.title}
                 <RxCross1 className="hover:animate-spin transition-all ease-in-out duration-200 cursor-pointer" />
                 <span className="font-semibold text-xl text-orange-600">
                   {item.quantity}
                 </span>
               </p>
+              <hr />
             </div>
           ))}
-          
         </section>
-        <h2 className="text-2xl dark:text-gray-200 text-gray-700 font-extrabold underline decoration-red-600 underline-offset-2 pt-2">
-            Total amount to be paid:
-            <span className="text-green-600 font-semibold tracking-widest">
-              Rs.{totalPrice}
-            </span>
-          </h2>
+        <h2 className=" text-xl lg:text-2xl dark:text-gray-200 text-gray-700 font-extrabold underline decoration-red-600 underline-offset-2 pt-2">
+          Total amount to be paid:
+          <span className="text-green-600 font-semibold tracking-widest">
+            Rs.{totalPrice}
+          </span>
+        </h2>
       </div>
+     <PaymentOptions/>
     </div>
   );
 };

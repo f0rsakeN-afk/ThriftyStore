@@ -7,8 +7,8 @@ import { IoEyeOff } from "react-icons/io5";
 import { FaEye } from "react-icons/fa6";
 
 const LoginPage = () => {
-  const [email, setEmail] = useState("test@gmail.com");
-  const [password, setPassword] = useState("test1234");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const { login, isLoading } = Login();
 
   const [showPassword, setShowPassword] = useState(false);
